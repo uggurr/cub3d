@@ -49,6 +49,7 @@ int	main(int ag, char **av)
 		get_identifier_path(ident);
 		//Siliecek
 		//printf("%s", map->every_line);
+		
 		int i = 0;
 		while (map->map_file[i] != NULL)
 		{
