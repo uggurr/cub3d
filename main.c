@@ -30,15 +30,18 @@ char	*get_all_map(char *str)
 void	create_mapfile(char **av, t_map *map)
 {
 	map->every_line = get_all_map(av[1]);
-		if (map->every_line == NULL)
-			error_map(map);
+	if (map->every_line == NULL)
+		error_map(map);
 	map->map_file = ft_split(map->every_line, '\n');
+	map->just_map = file_extraction(map);
+	map->just_map = ft_strtrim(map->just_map, "\n");
+	newline_check(map);
 }
 
 int	main(int ag, char **av)
 {
 	t_map	*map;
-	t_ident *ident;
+	t_ident	*ident;
 
 	if (ag == 2 && cub_check(av[1]))
 	{
@@ -47,20 +50,20 @@ int	main(int ag, char **av)
 		create_mapfile(av, map);
 		identifier_check(map->map_file, ident);
 		get_identifier_path(ident);
-		//Siliecek
-		//printf("%s", map->every_line);
-		
-		int i = 0;
-		while (map->map_file[i] != NULL)
-		{
-			printf("%s\n", map->map_file[i]);
-			i++;
-		}
+		//Silinecek
+		//printf("%c", map->every_line[94]);
+		//int i = 0;
+		printf("%s", map->just_map);
+		//int i = 6;
+		//while (map->map_file[i] != NULL)
+		//{
+		//	printf("%s\n", map->map_file[i]);
+		//	i++;
+		//}
 	}
 	else
 	{
 		printf("Something is wrong!\n");
 		printf("Multiple arguments cannot be entered or the file path is incorrect\n");
 	}
-
 }
